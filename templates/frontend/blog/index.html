@@ -1,0 +1,53 @@
+<?php include(__DIR__ . '/../basic/header.html'); ?>
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row">
+            <div class="form-group form-inline col-auto">
+                <label class="col-form-label col-sm-auto">搜尋：</label>
+                <div class="col-auto">
+                    <input class="form-control" type="text" />
+                </div>
+            </div>
+            <div class="form-group form-inline col-auto">
+                <label class="col-form-label col-sm-auto">搜尋範圍：</label>
+                <div class="col-auto">
+                    <select class="form-control">
+                        <option>標題</option>
+                        <option>作者</option>
+                        <option>標籤</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group form-inline col-auto">
+                <button class="btn btn-primary">查詢</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <p class="h3">最新文章</p>
+        <div class="card">
+            <div class="card-header">標題</div>
+            <div class="card-body">
+                內文
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <button class="btn btn-secondary">閱讀更多</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-sm-5 text-left">
+                        <label>標籤：標籤1、標籤2、標籤3</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<?php include(__DIR__ . '/../basic/footer.html'); ?>

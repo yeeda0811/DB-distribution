@@ -1,0 +1,174 @@
+<?php include(__DIR__ . '/../basic/header.html'); ?>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row">
+            <div class="col-auto row form-group">
+                <label class="col-form-label col-auto">搜尋：</label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="serchItem" />
+                </div>
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 row-cols-1 justify-content-center">
+            <table class="table table-borderless" id="dataTable" style="width:100%">
+                <thead>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<?php include(__DIR__ . '/../basic/footer.html'); ?>
+<script type="text/javascript">
+    // $.ajax({
+    //     type: 'get',
+    //     url: '/test',
+    //     data: {
+
+    //     },
+    //     success: function (response) {
+    //         alert(JSON.stringify(response));
+    //     }
+
+    // })
+
+    let setting = {
+        "ordering": false,
+        "destroy": true,
+        "searching": false,
+        "language": {
+            "processing": "處理中...",
+            "loadingRecords": "載入中...",
+            "lengthMenu": "顯示 _MENU_ 項結果",
+            "zeroRecords": "沒有符合的結果",
+            "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+            "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+            "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+            "infoPostFix": "",
+            "search": "搜尋:",
+            "paginate": {
+                "first": "第一頁",
+                "previous": "上一頁",
+                "next": "下一頁",
+                "last": "最後一頁"
+            },
+            "aria": {
+                "sortAscending": ": 升冪排列",
+                "sortDescending": ": 降冪排列"
+            }
+        },
+        'columnDefs': [{
+            'targets': 0,
+            'checkboxes': {
+                'selectRow': true
+            }
+        }],
+        'select': {
+            'style': 'multi'
+        },
+    };
+    let setting_business = JSON.parse(JSON.stringify(setting));
+    $('#dataTable').DataTable(setting_business).destroy();
+    setting_business['ajax'] = {
+        "url": "/all",
+        "data": function (d) {
+        }
+    };
+
+    setting_business['processing'] = true;
+    setting_business['serverSide'] = true;
+    setting_business['columns'] = [
+        {
+            "data": null,
+            render: function (data, type, row, meta) {
+                if (row[0].length === 0) return ``;
+                return `
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
+                        </div>
+                        <!-- Product image-->
+                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <h5 class="card-title text-center">${row[0]['item_name']}</h5>
+                            <div class="card-text text-center">
+                                <!-- Product price-->
+                                ${row[0]['price'] || ''} 
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" name="toTextPage" onclick="location.href ='/show/${row[0]['item_id']}'">詳細資訊</a></div>
+                        </div>
+                    </div>
+                </div>
+           `;
+            },
+        }, {
+            "data": null,
+            render: function (data, type, row, meta) {
+                if (row[1].length === 0) return ``;
+                return `
+                <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
+                    </div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <h5 class="card-title text-center">${row[1]['item_name']}</h5>
+                        <div class="card-text text-center">
+                            <!-- Product price-->
+                            ${row[1]['price'] || ''} 
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" name="toTextPage" onclick="location.href ='/show/${row[1]['item_id']}'">詳細資訊</a></div>
+                    </div>
+                </div>
+            </div>
+           `;
+            },
+        }, {
+            "data": null,
+            render: function (data, type, row, meta) {
+                if (row[2].length === 0) return ``;
+                return `
+                <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
+                    </div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <h5 class="card-title text-center">${row[2]['item_name']}</h5>
+                        <div class="card-text text-center">
+                            <!-- Product price-->
+                            ${row[2]['price'] || ''} 
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" name="toTextPage" onclick="location.href ='/show/${row[2]['item_id']}'">詳細資訊</a></div>
+                    </div>
+                </div>
+            </div>
+           `;
+            },
+        },
+    ];
+    $('#dataTable').DataTable(setting_business);
+</script>
