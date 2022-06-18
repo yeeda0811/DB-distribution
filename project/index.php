@@ -1,6 +1,7 @@
 <?php
 // require_once('connect.php');
 include('connect.php');
+$container['view'] = __DIR__ . '/../project/';
 
 $sql = "SELECT * FROM buyer";
 $result = $conn->query($sql);
