@@ -1,0 +1,140 @@
+<!-- <html>
+
+<head>
+    <meta charset="utf-8">
+    <title>html表單用php送pgsql</title>
+</head>
+
+<body>
+
+    <form action="p_ajax.php" method="POST">
+        <li>ID: </li>
+        <li><input type="text" name="id"></li>
+        <li>Name: </li>
+        <li><input type="text" name="name"></li>
+        <li>Age: </li>
+        <li><input type="text" name="age"></li>
+        <li>Address: </li>
+        <li><input type="text" name="address"></li>
+        <li>Salary: </li>
+        <li><input type="text" name="salary"></li>
+        <input type="submit" value="add">
+    </form>
+
+
+    <script type="text/javascript">
+        function add() {
+            var txt1 = $("#id").val();
+            var txt2 = $("#name").val();
+            var txt3 = $("#age").val();
+            var txt4 = $("#address").val();
+            var txt5 = $("#salary").val();
+
+            $.ajax ({
+                type: 'post',
+                url: 'p_ajax.php',
+                data: {
+                    name: txt1,
+                    name: txt2,
+                    age: txt3,
+                    address: txt4,
+                    salary: txt5
+                },
+                dataType: 'json',
+                success: function (Jdata) {
+                    alert("SUCCESS!!!");
+                },
+
+                error: function () {
+                    alert("ERROR!!!");
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html> -->
+
+<h3>Table介紹:</h3>
+
+<table id="" class="table_change">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>職位</th>
+            <th>薪資</th>
+            <th>開始工作日</th>
+            <th>辦公室</th>
+            <th>分機</th>
+            <th>其他</th>
+            <th>備註</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td>Tiger Nixon</td>
+            <td><a href="" target="_blank">Director</a></td>
+            <td>$5,300</td>
+            <td style = "">2011/07/25</td>
+            <td style = "">Edinburgh</td>
+            <td>8422</td>
+            <td>12345567890</td>
+            <td><button type="button">編輯</button><button type="button">刪除</button></td>
+        </tr>
+        <tr class="even">
+            <td>Garrett Winters</td>
+            <td><a href="" target="_blank">Director</a></td>
+            <td>$5,300</td>
+            <td>2011/07/25</td>
+            <td>Edinburgh</td>
+            <td>8422</td>
+            <td>12345567890</td>
+            <td><button type="button">編輯</button><button type="button">刪除</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+        /*----產生data-th-----*/
+        let $table = $(".table_change");
+        let $thRows = $table.find("thead th");
+        $thRows.each(function (key, thRow) {
+            $table
+                .find("tbody tr td:nth-child(" + (key + 1) + ")")
+                .attr("data-th", $(thRow).text());
+        });
+
+        /*----產生more-----*/
+        if ($(".table_change thead th").length > 6) {
+            $(".table_change thead tr").append('<th class="resultMore_th"></th>');
+
+            $(".table_change tbody tr").append(
+                '<div class="resultMore"><i class= "fas fa-chevron-down"></i></div>'
+            );
+        }
+
+        $("body").on("click", ".resultMore", function () {
+            //第6個後隱藏
+            $(this).parent().find("td:nth-of-type(n+6)").toggle();
+            //btn轉向
+            $(this).find(".fa-chevron-down").toggleClass("rotate-180");
+        });
+
+        tableResultToggle();
+    });
+
+    $(window).resize(function () {
+        tableResultToggle();
+    });
+
+    function tableResultToggle() {
+        if (window.innerWidth <= 768) {
+            $(".table_change tbody td:nth-of-type(n+6)").hide();
+        } else {
+            $(".table_change tbody td:nth-of-type(n+6)").show();
+        }
+    }
+
+</script>
