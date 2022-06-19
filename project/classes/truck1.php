@@ -28,3 +28,4 @@ $myarray = array();
     }
 
 mysqli_close($conn);
+?>
