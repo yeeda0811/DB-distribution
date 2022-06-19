@@ -13,3 +13,4 @@ $sql = "SELECT truck_delivery.truck_id, delivery_order.order_id, customer.custom
         WHERE truck_delivery.truck_id = '1721'
         GROUP BY customer.customer_name
 ";       //1721車上貨物的customer
+//123132132
