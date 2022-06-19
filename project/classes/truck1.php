@@ -1,8 +1,5 @@
 <?php
-
-
-$sql = 'SELECT * FROM buyer';       //buyer 表
-
+include('connect.php');
 
 $sql = "SELECT truck_delivery.truck_id, delivery_order.order_id, customer.customer_name
         FROM truck_delivery
@@ -12,4 +9,22 @@ $sql = "SELECT truck_delivery.truck_id, delivery_order.order_id, customer.custom
         LEFT JOIN customer ON product_customer.customer_id = customer.customer_id
         WHERE truck_delivery.truck_id = '1721'
         GROUP BY customer.customer_name
-";       //1721車上貨物的customer
+";   
+
+$result = mysqli_query($conn, $sql); 
+
+$myarray = array();
+
+    //判斷資料表有沒有內容，如果是空的就不執行查詢
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_assoc($result)){
+
+            $myarray[] = $row;
+        }
+        //轉成 json 語法
+        echo json_encode($myarray);
+    }else{
+        echo '沒有資料內容';
+    }
+
+mysqli_close($conn);
