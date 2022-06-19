@@ -46,7 +46,7 @@
         $(function () {
             $.ajax({
                 type: "POST",
-                url: "buyer.php",
+                url: "customer.php",
                 dataType: "json",
                 success: show,
                 error: function () {
@@ -68,14 +68,14 @@
     <script>
         $.ajax({
 
-            type: 'post',
-            url: 'buyer.php',
+            type: 'GET',
+            url: 'customer.php',
             dataType: 'json',
             success: function (data) {
                 var item;
                 $.each(data, function (i, result) {
                     item =
-                        "<tr><td>" + result['buyer_id'] + "</td><td>" + result['buyer_name'] + "</td></tr>";
+                        "<tr><td>" + result['customer_id'] + "</td><td>" + result['customer_name'] + "</td></tr>";
                     $('.table').append(item);
                 });
             },
