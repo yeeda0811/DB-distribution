@@ -207,7 +207,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-8 offset-2">
-                                        <table id="role" class="table table-striped table-bordered " style="width:100%">
+                                        <table id="table1" class="table table-striped table-bordered " style="width:100%">
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th>貨車編號</th>
@@ -215,13 +215,6 @@
                                                     <th>買家姓名</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="member_list">
-                                                <tr>
-                                                    <td>000</td>
-                                                    <td>000</td>
-                                                    <td>TT</td>
-                                                </tr>
-                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -234,21 +227,13 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-8 offset-2">
-                                        <table id="role" class="table table-striped table-bordered " style="width:100%">
+                                        <table id="table2" class="table table-striped table-bordered " style="width:100%">
                                             <thead class="table-dark">
                                                 <tr>
-                                                    <th>貨車編號</th>
-                                                    <th>訂單編號</th>
-                                                    <th>買家姓名</th>
+                                                    <th>貨品編號</th>
+                                                    <th>貨品名稱</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="member_list">
-                                                <tr>
-                                                    <td>000</td>
-                                                    <td>000</td>
-                                                    <td>TT</td>
-                                                </tr>
-                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -300,7 +285,26 @@
                         $.each(data, function (i, result) {
                             item =
                                 "<tr><td>" + result['truck_id'] + "</td> + <td>" + result['order_id'] + "</td> + <td>" + result['customer_name'] + "</td></tr>";
-                            $('.table').append(item);
+                            $('#table1').append(item);
+                        });
+                    },
+
+                });
+            </script>
+
+
+            <script>
+                $.ajax({
+
+                    type: 'GET',
+                    url: 'classes/truck2.php',
+                    dataType: 'json',
+                    success: function (data) {
+                        var item;
+                        $.each(data, function (i, result) {
+                            item =
+                                "<tr><td>" + result['product_id'] + "</td> + <td>" + result['product_name'] + "</td></tr>";
+                            $('#table2').append(item);
                         });
                     },
 
