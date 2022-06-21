@@ -48,12 +48,14 @@ $sql = "SELECT product_customer.customer_id, customer.customer_name , count(orde
         ORDER BY packageCount DESC
 ";       //郵寄最多加上時間 OK
 
-$sql = "SELECT order_product.order_id, order_product.product_id
-        FROM order_product
+$sql = "SELECT order_product.order_id,product.product_name
+        FROM product
+        LEFT JOIN order_product ON product.product_id = order_product.product_id
         LEFT JOIN delivery_order ON order_product.order_id = delivery_order.order_id
         LEFT JOIN delivery ON delivery_order.delivery_id = delivery.delivery_id
         LEFT JOIN orderlist ON delivery_order.order_id = orderlist.order_id
-        WHERE orderlist.timeline < delivery.arrival 
+        WHERE orderlist.timeline < delivery.arrival_time
+
 ";       //時間不對OK
 
 $sql = "SELECT ('truck') AS name, COUNT(truck_id) AS count數量
