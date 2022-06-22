@@ -8,7 +8,7 @@ $sql = "SELECT truck_delivery.truck_id, delivery_order.order_id, customer.custom
         LEFT JOIN product_customer ON order_product.product_id = product_customer.product_id
         LEFT JOIN customer ON product_customer.customer_id = customer.customer_id
         WHERE truck_delivery.truck_id = '1721'
-        GROUP BY customer.customer_name
+        GROUP BY delivery_order.order_id
 ";   
 
 $result = mysqli_query($conn, $sql); 

@@ -1,7 +1,7 @@
 <?php
 include('connect.php');
 
-$sql = "SELECT order_product.product_id, product.product_name 
+$sql = "SELECT order_product.order_id, order_product.product_id, product.product_name 
         FROM truck LEFT JOIN truck_delivery ON truck.truck_id = truck_delivery.truck_id 
         LEFT JOIN delivery ON truck_delivery.delivery_id = delivery.delivery_id 
         LEFT JOIN delivery_order ON delivery.delivery_id = delivery_order.delivery_id
@@ -9,6 +9,7 @@ $sql = "SELECT order_product.product_id, product.product_name
         LEFT JOIN product ON order_product.product_id = product.product_id
         WHERE truck.truck_id = '1721' 
         AND delivery.success_number = truck.last_success
+        ORDER BY order_product.order_id
 ";   
 
 $result = mysqli_query($conn, $sql); 
