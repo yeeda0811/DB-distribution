@@ -1,5 +1,7 @@
 Distribution System 2022/6/20
 
+資料庫在phpmyadmin 裡的410977025
+
 author: 
     410977023 軟體二 何銘耀
     410977025 軟體二 吳俋達
@@ -28,5 +30,4 @@ table:
     delivery_order(delivery_id, order_id) 這一批一起配送的單子內有那些包裹
     truck_delivery(truck_id, delivery_id) 貨車對應到的一筆配送單
     sent_customer(sent_id, customer_id) 寄送單與對應之顧客
-
 
